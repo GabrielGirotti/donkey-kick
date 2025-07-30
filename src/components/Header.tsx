@@ -10,36 +10,44 @@ export default function Header() {
         loop
         muted
         playsInline
+        aria-label="Video oficial de Donkey Kick"
       />
       <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black/60 p-4">
+        <h1 className="sr-only">Donkey Kick</h1>
         <img
           src="/donkey-kick-logo.png"
           alt="Donkey Kick Logo"
           className="w-[300px] md:w-[400px] drop-shadow-2xl"
         />
-        <div className="flex space-x-6 text-orange-500 text-3xl -mt-14 z-20 cursor-pointer">
+        <nav
+          aria-label="Redes sociales de Donkey Kick"
+          className="flex space-x-6 text-orange-500 text-3xl -mt-14 z-20 cursor-pointer"
+        >
           <a
             href="https://www.instagram.com/donkey_kick/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram de Donkey Kick"
           >
-            <FaInstagram />
+            <FaInstagram aria-hidden="true" />
           </a>
           <a
             href="https://open.spotify.com/intl-es/artist/0BxpcBBFlQgZKn4Ny03Jnp"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Spotify de Donkey Kick"
           >
-            <FaSpotify />
+            <FaSpotify aria-hidden="true" />
           </a>
           <a
             href="https://www.youtube.com/@donkey_kick"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Youtube de Donkey Kick"
           >
-            <FaYoutube />
+            <FaYoutube aria-hidden="true" />
           </a>
-        </div>
+        </nav>
       </div>
     </header>
   );
