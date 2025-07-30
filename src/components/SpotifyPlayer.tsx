@@ -1,11 +1,18 @@
 export default function SpotifyPlayer() {
   return (
-    <section className="bg-black text-white py-12 px-4 text-center">
-      <h2 className="text-3xl md:text-4xl mb-6 font-semibold">
+    <section
+      className="bg-black text-white py-12 px-4 text-center"
+      aria-labelledby="spotify-heading"
+    >
+      <h2
+        id="spotify-heading"
+        className="text-3xl md:text-4xl mb-6 font-semibold"
+      >
         Escuchá Satan's Crew
       </h2>
       <div className="flex justify-center">
         <iframe
+          title="Reproductor del álbum Satan's Crew en Spotify"
           src="https://open.spotify.com/embed/album/3GI6lYKoMn8PM2G5uvmEQX?utm_source=generator"
           width="100%"
           height="380"
