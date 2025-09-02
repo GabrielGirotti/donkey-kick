@@ -22,7 +22,8 @@ export default function MusicPlayer() {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-
+  const [progress, setProgress] = useState(0); // progreso en segundos
+  const [duration, setDuration] = useState(0); // duración total en segundos
   const currentTrack = tracks[currentTrackIndex];
 
   const togglePlay = () => {
@@ -45,12 +46,47 @@ export default function MusicPlayer() {
     setIsPlaying(true); // <- cambiar a true para autoplay
   };
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const updateProgress = () => {
+      setProgress(audio.currentTime);
+    };
+
+    audio.addEventListener("timeupdate", updateProgress);
+
+    // Al cargar metadata, seteamos duración
+    const setAudioDuration = () => {
+      setDuration(audio.duration);
+    };
+    audio.addEventListener("loadedmetadata", setAudioDuration);
+
+    return () => {
+      audio.removeEventListener("timeupdate", updateProgress);
+      audio.removeEventListener("loadedmetadata", setAudioDuration);
+    };
+  }, [currentTrack]);
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!audioRef.current) return;
+    const newTime = Number(e.target.value);
+    audioRef.current.currentTime = newTime;
+    setProgress(newTime);
+  };
+
   // Efecto para reproducir automáticamente al cambiar de track
   useEffect(() => {
     if (audioRef.current && isPlaying) {
       audioRef.current.play();
     }
   }, [currentTrackIndex, isPlaying]);
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
 
   return (
     <section className="w-full h-[70vh] flex items-center justify-center bg-black/70 py-72">
@@ -63,6 +99,18 @@ export default function MusicPlayer() {
         <h2 className="text-xl mb-2 font-semibold text-orange-500 drop-shadow-lg">
           {currentTrack.title}
         </h2>
+        <div className="w-full flex items-center space-x-2 mt-4 text-white text-sm">
+          <span>{formatTime(progress)}</span>
+          <input
+            type="range"
+            min={0}
+            max={duration}
+            value={progress}
+            onChange={handleSeek}
+            className="flex-1 h-1 rounded-lg bg-orange-500 accent-orange-400"
+          />
+          <span>{formatTime(duration)}</span>
+        </div>
 
         <div className="flex items-center space-x-6 text-orange-500 text-3xl">
           <button onClick={playPrev} aria-label="Canción anterior">
