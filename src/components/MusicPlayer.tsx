@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaPlay, FaPause, FaStepForward, FaStepBackward } from "react-icons/fa";
 import terror from "../assets/songs/terror.mp3";
 import she from "../assets/songs/she.mp3";
@@ -12,26 +12,10 @@ interface Track {
 }
 
 const tracks: Track[] = [
-  {
-    title: "Terror Movie",
-    cover: "/terror.jpg",
-    src: terror,
-  },
-  {
-    title: "She Is Ideal",
-    cover: "/she.jpg",
-    src: she,
-  },
-  {
-    title: "Dancing With My Dead Girl",
-    cover: "/dancing.jpg",
-    src: dancing,
-  },
-  {
-    title: "WolfGirl",
-    cover: "/wolf.jpg",
-    src: wolf,
-  },
+  { title: "Terror Movie", cover: "/terror.jpg", src: terror },
+  { title: "She Is Ideal", cover: "/she.jpg", src: she },
+  { title: "Dancing With My Dead Girl", cover: "/dancing.jpg", src: dancing },
+  { title: "WolfGirl", cover: "/wolf.jpg", src: wolf },
 ];
 
 export default function MusicPlayer() {
@@ -53,13 +37,20 @@ export default function MusicPlayer() {
 
   const playNext = () => {
     setCurrentTrackIndex((prev) => (prev + 1) % tracks.length);
-    setIsPlaying(false);
+    setIsPlaying(true); // <- cambiar a true para autoplay
   };
 
   const playPrev = () => {
     setCurrentTrackIndex((prev) => (prev === 0 ? tracks.length - 1 : prev - 1));
-    setIsPlaying(false);
+    setIsPlaying(true); // <- cambiar a true para autoplay
   };
+
+  // Efecto para reproducir automáticamente al cambiar de track
+  useEffect(() => {
+    if (audioRef.current && isPlaying) {
+      audioRef.current.play();
+    }
+  }, [currentTrackIndex, isPlaying]);
 
   return (
     <section className="w-full h-[70vh] flex items-center justify-center bg-black/70 py-72">
@@ -89,12 +80,7 @@ export default function MusicPlayer() {
           </button>
         </div>
 
-        <audio
-          ref={audioRef}
-          src={currentTrack.src}
-          onEnded={playNext}
-          autoPlay={isPlaying}
-        />
+        <audio ref={audioRef} src={currentTrack.src} onEnded={playNext} />
       </div>
     </section>
   );
