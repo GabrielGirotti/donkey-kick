@@ -1,3 +1,5 @@
+ import DK from "../assets/DonkeyKick.jpg";
+
 export default function Biography() {
   return (
     <section
@@ -6,7 +8,7 @@ export default function Biography() {
     >
       <div className="w-full h-[50vh] overflow-hidden">
         <img
-          src="https://image-cdn-fa.spotifycdn.com/image/ab67618600000194b9ef7c5d77a4c5ae10b60c80"
+          src={DK}
           alt="Donkey Kick Spotify Banner"
           className="w-full h-full object-cover"
         />
@@ -24,17 +26,12 @@ export default function Biography() {
           punk con la esencia del psychobilly más crudo.
         </p>
         <p className="text-base sm:text-lg leading-relaxed mt-4 text-zinc-200">
-          Formada por <strong>Gabba</strong> (guitarra y voz),{" "}
+          Formada por <strong>Jessi</strong> (voz),{" "} <strong>Gabba</strong> (guitarra y voz),{" "}
           <strong>Kevin</strong> (contrabajo y voz) y <strong>Pedro</strong>{" "}
-          (batería y coros), el trío canaliza influencias clásicas y modernas
+          (batería), el grupo canaliza influencias clásicas y modernas
           para crear un sonido propio y directo.
         </p>
-        <p className="text-base sm:text-lg leading-relaxed mt-4 text-zinc-200">
-          En su primer EP titulado <strong>“Satan's Crew”</strong>, disponible
-          en todas las plataformas digitales, Donkey Kick presenta 6 canciones
-          originales que capturan su estilo salvaje y su identidad sonora con
-          fuerza y actitud.
-        </p>
+
       </article>
     </section>
   );
