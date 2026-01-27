@@ -13,7 +13,7 @@ interface Track {
 
 const tracks: Track[] = [
   // { title: "Terror Movie", cover: "/terror.jpg", src: terror },
-  { title: "She Is Ideal", cover: "/she.jpg", src: she },
+  { title: "She's Ideal", cover: "/she.jpg", src: she },
   // { title: "Dancing With My Dead Girl", cover: "/dancing.jpg", src: dancing },
   // { title: "WolfGirl", cover: "/wolf.jpg", src: wolf },
 ];
