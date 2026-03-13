@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { FaPlay, FaPause, FaStepForward, FaStepBackward } from "react-icons/fa";
 // import terror from "../assets/songs/terror.mp3";
 import she from "../assets/songs/she.mp3";
-// import dancing from "../assets/songs/dancing.mp3";
+import school from "../assets/songs/school.mp3";
 // import wolf from "../assets/songs/wolf.mp3";
 
 interface Track {
@@ -14,7 +14,7 @@ interface Track {
 const tracks: Track[] = [
   // { title: "Terror Movie", cover: "/terror.jpg", src: terror },
   { title: "She's Ideal", cover: "/she.jpg", src: she },
-  // { title: "Dancing With My Dead Girl", cover: "/dancing.jpg", src: dancing },
+  { title: "School of Zombies", cover: "/school.jpg", src: school },
   // { title: "WolfGirl", cover: "/wolf.jpg", src: wolf },
 ];
 
