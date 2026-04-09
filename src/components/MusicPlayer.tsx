@@ -14,7 +14,7 @@ interface Track {
 const tracks: Track[] = [
   { title: "School of Zombies", cover: "/school.jpg", src: school },
   { title: "She's Ideal", cover: "/she.jpg", src: she },
-  { title: "Wolfgirl", cover: "/wolfgirl.jpg", src: wolf },
+  { title: "Wolfgirl", cover: "/wolf.jpg", src: wolf },
 ];
 
 export default function MusicPlayer() {
